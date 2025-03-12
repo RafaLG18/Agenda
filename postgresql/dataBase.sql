@@ -7,10 +7,10 @@ CREATE TABLE "usuario"(
 ALTER TABLE
     "usuario" ADD PRIMARY KEY("id");
 CREATE TABLE "endereco"(
-    "id" BIGINT NOT NULL,
-    "cep" VARCHAR(8) NOT NULL,
+    "id" INTEGER NOT NULL,
+    "CEP" VARCHAR(8) NOT NULL,
     "rua" VARCHAR(255) NOT NULL,
-    "numero" BIGINT NOT NULL,
+    "numero" INTEGER NOT NULL,
     "complemento" VARCHAR(255) NOT NULL
 );
 ALTER TABLE
@@ -19,12 +19,12 @@ CREATE TABLE "agenda"(
     "id" INTEGER NOT NULL,
     "usuario" INTEGER NOT NULL,
     "telefone" INTEGER NOT NULL,
-    "endereco" BIGINT NOT NULL
+    "endereco" INTEGER NOT NULL
 );
 ALTER TABLE
     "agenda" ADD PRIMARY KEY("id");
 CREATE TABLE "telefones"(
-    "id" BIGINT NOT NULL,
+    "id" INTEGER NOT NULL,
     "telefone-1" VARCHAR(255) NOT NULL,
     "telefone-2" VARCHAR(255) NOT NULL DEFAULT '-',
     "telefone-3" VARCHAR(255) NOT NULL DEFAULT '-'
