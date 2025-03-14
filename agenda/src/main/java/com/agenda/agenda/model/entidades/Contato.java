@@ -1,6 +1,6 @@
 package com.agenda.agenda.model.entidades;
 
-public class Agenda {
+public class Contato {
     public int idUsuario;
     public int idTelefone;
     public int idEndereco;
