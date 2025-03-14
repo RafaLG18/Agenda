@@ -1,0 +1,36 @@
+<!-- Modal para cadastrar um novo contato -->
+<div class="modal fade" id="addContactModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Novo Contato</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="contactForm" action="/add-contact" method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Nome</label>
+                        <input type="text" name="name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Telefone 1</label>
+                        <input type="text" name="phone1" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Telefone 2</label>
+                        <input type="text" name="phone2" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Telefone 3</label>
+                        <input type="text" name="phone3" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Endereço</label>
+                        <input type="text" name="address" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Salvar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

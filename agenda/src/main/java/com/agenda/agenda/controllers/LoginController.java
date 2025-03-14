@@ -9,7 +9,6 @@ public class LoginController {
     @GetMapping("/login")
 	//@RequestMapping({"/","","/*"})
 	public String principal(Model m) {
-		return "login/login";
-		
+		return "login/login";	
 	}
 }
