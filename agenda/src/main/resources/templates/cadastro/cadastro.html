@@ -62,13 +62,13 @@
         <h1 class="mb-4"><i class="fas fa-user-plus"></i> Cadastro</h1>
         <form th:action="@{/cadastro}" method="post">
             <div class="mb-3">
-                <input type="text" name="username" class="form-control" placeholder="Usuário" required>
+                <input type="text" name="username" class="form-control" placeholder="Nome" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="email" class="form-control" placeholder="Email" required>
             </div>
             <div class="mb-3">
                 <input type="password" name="password" class="form-control" placeholder="Senha" required>
-            </div>
-            <div class="mb-3">
-                <input type="password" name="confirmPassword" class="form-control" placeholder="Confirmar Senha" required>
             </div>
             <button type="submit" class="btn btn-success btn-custom">Cadastrar</button>
         </form>
