@@ -1,8 +1,8 @@
 -- Inserindo dados na tabela "usuario"
 INSERT INTO "usuario" ("nome", "email", "senha") VALUES
-('João Silva', 'joao.silva@example.com', 1234567890),
-('Maria Oliveira', 'maria.oliveira@example.com', 0987654321),
-('Carlos Souza', 'carlos.souza@example.com', 1122334455);
+('João Silva', 'joao.silva@example.com', '1234567890'),
+('Maria Oliveira', 'maria.oliveira@example.com', '0987654321'),
+('Carlos Souza', 'carlos.souza@example.com', '1122334455');
 
 -- Inserindo dados na tabela "endereco"
 INSERT INTO "endereco" ("CEP", "rua", "numero", "complemento") VALUES
