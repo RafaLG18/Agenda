@@ -22,9 +22,9 @@ ALTER TABLE
 -- Tabela telefones
 CREATE TABLE "telefones"(
     "id" SERIAL NOT NULL,
-    "telefone-1" VARCHAR(255) NOT NULL DEFAULT '-',
-    "telefone-2" VARCHAR(255) NOT NULL DEFAULT '-',
-    "telefone-3" VARCHAR(255) NOT NULL DEFAULT '-'
+    "telefone1" VARCHAR(255) NOT NULL DEFAULT '-',
+    "telefone2" VARCHAR(255) NOT NULL DEFAULT '-',
+    "telefone3" VARCHAR(255) NOT NULL DEFAULT '-'
 );
 ALTER TABLE
     "telefones" ADD PRIMARY KEY("id");

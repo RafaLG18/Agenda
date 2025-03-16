@@ -5,7 +5,7 @@ INSERT INTO "usuario" ("nome", "email", "senha") VALUES
 ('Carlos Souza', 'carlos.souza@example.com', '1122334455');
 
 -- Inserindo dados na tabela "endereco"
-INSERT INTO "endereco" ("CEP", "rua", "numero", "complemento") VALUES
+INSERT INTO "endereco" ("cep", "rua", "numero", "complemento") VALUES
 ('12345678', 'Rua das Flores', 100, 'Apartamento 101'),
 ('87654321', 'Avenida Brasil', 200, 'Casa 2'),
 ('45678901', 'Rua dos Coqueiros', 300, 'Bloco B, Apt 302'),
@@ -13,7 +13,7 @@ INSERT INTO "endereco" ("CEP", "rua", "numero", "complemento") VALUES
 ('54321098', 'Avenida Paulista', 500, 'Sala 10');
 
 -- Inserindo dados na tabela "telefones"
-INSERT INTO "telefones" ("telefone-1", "telefone-2", "telefone-3") VALUES
+INSERT INTO "telefones" ("telefone1", "telefone2", "telefone3") VALUES
 ('(11) 98765-4321', '(11) 91234-5678', '-'),
 ('(21) 99876-5432', '-', '-'),
 ('(31) 98765-1234', '(31) 91234-8765', '(31) 92345-6789'),

@@ -11,15 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.agenda.agenda.model.repositorios.RepositorioUsuario;
 
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 @Controller
 public class LoginController {
 	@Autowired
 	private HttpServletRequest request;
-	
-	@Autowired
-	private HttpServletResponse response;
 	
 	@Autowired
 	private HttpSession session;
@@ -31,8 +27,10 @@ public class LoginController {
 
 	@PostMapping("/login")
 	public String login(Model m) throws SQLException{
-
+		
 		RepositorioUsuario usuarios= new RepositorioUsuario();
+		session=request.getSession();
+		
 		String email=request.getParameter("email");
 		String senha=request.getParameter("password");
 		
@@ -40,6 +38,8 @@ public class LoginController {
 		String senha_bd=usuarios.pesquisar("senha", senha);
 		
 		if (email.equals(email_bd) && senha.equals(senha_bd)) {
+			session.setAttribute("logado", "true");
+			session.setAttribute("user_email", email);
 			m.addAttribute("logado","true");			
 			return "redirect:/home";
 		}else{

@@ -28,4 +28,17 @@ public class RepositorioUsuario {
         }
         return "";
     }
+    public int pesquisarId(String coluna, String valor) throws SQLException {
+        String sql="select id from usuario where "+coluna+"= ?";
+        
+        try(PreparedStatement pstm = ConnectionManager.getCurrentConnection().prepareStatement(sql)){
+            pstm.setString(1, valor);
+            ResultSet query = pstm.executeQuery();
+            while (query.next()) { 
+                int resultado=query.getInt(coluna);
+                return resultado;
+            }
+        }
+        return -1;
+    }
 }

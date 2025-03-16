@@ -21,9 +21,9 @@ public class Telefones {
         return this.telefone1;
     }
     public String getTelefone2(){
-        return this.telefone1;
+        return this.telefone2;
     }
-    public String getTelefone(){
-        return this.telefone1;
+    public String getTelefone3(){
+        return this.telefone3;
     }
 }
