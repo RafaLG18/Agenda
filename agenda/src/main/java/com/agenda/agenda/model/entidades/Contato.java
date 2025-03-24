@@ -1,10 +1,18 @@
 package com.agenda.agenda.model.entidades;
 
-public class Agenda {
+public class Contato {
+    public int id;
+    public String nome;
     public int idUsuario;
     public int idTelefone;
     public int idEndereco;
     
+    public void setNome(String nome){
+        this.nome=nome;
+    }
+    public void setId(int id){
+        this.id=id;
+    }
     public void setIdUsuario(int id){
         this.idUsuario=id;
     }
@@ -15,6 +23,12 @@ public class Agenda {
         this.idEndereco=id;
     }
 
+    public String getNome(){
+        return this.nome;
+    }
+    public int getId(){
+        return this.id;
+    }
     public int getIdUsuario(){
         return this.idUsuario;
     }

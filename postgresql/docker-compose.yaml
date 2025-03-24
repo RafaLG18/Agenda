@@ -2,7 +2,7 @@
 services:
 
   db:
-    build: .
+    image: rafaelleal18/web2:latest 
     restart: always
     # set shared memory limit when using docker-compose
     shm_size: 128mb

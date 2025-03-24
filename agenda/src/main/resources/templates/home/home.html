@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Minha Agenda</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 900px;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+        }
+        .form-control {
+            border-radius: 10px;
+        }
+        .table-container {
+            max-height: 300px;
+            overflow-y: auto;
+            border-radius: 10px;
+        }
+        .table {
+            margin-top: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .btn-custom {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .btn-custom:hover {
+            transform: scale(1.05);
+        }
+
+        /* Ajustando a cor da fonte no modal para preto */
+        .modal-content {
+            color: black; /* Cor preta para o texto dentro do modal */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="mb-3"><i class="fas fa-address-book"></i> Meus Contatos</h1>
+
+        <!-- Campo de pesquisa -->
+        <div class="input-group mb-3">
+            <input type="text" id="search" class="form-control" placeholder="Buscar contato..." onkeyup="filterContacts()">
+            <span class="input-group-text"><i class="fas fa-search"></i></span>
+        </div>
+
+        <!-- Tabela de contatos -->
+        <div class="table-container">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Nome</th>
+                        <th>Telefone 1</th>
+                        <th>Telefone 2</th>
+                        <th>Telefone 3</th>
+                        <th>Endereço</th>
+                    </tr>
+                </thead>
+                <tbody id="contactTable">
+                    <tr th:each="contact : ${contacts}">
+                        <td th:text="${contact.name}"></td>
+                        <td th:text="${contact.phone1} ?: 'N/A'"></td>
+                        <td th:text="${contact.phone2} ?: 'N/A'"></td>
+                        <td th:text="${contact.phone3} ?: 'N/A'"></td>
+                        <td th:text="${contact.address}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Botão para abrir o modal -->
+        <button class="btn btn-primary btn-custom mt-3" data-bs-toggle="modal" data-bs-target="#addContactModal">
+            <i class="fas fa-user-plus"></i> Adicionar Contato
+        </button>
+
+        <a href="/logout" class="btn btn-danger btn-custom mt-3"><i class="fas fa-sign-out-alt"></i> Sair</a>
+    </div>
+
+    <!-- Modal para cadastro de novo contato -->
+    <div class="modal fade" id="addContactModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Novo Contato</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="contactForm" th:action="@{/add-contact}" method="post">
+                        <div class="mb-3">
+                            <label class="form-label">Nome</label>
+                            <input type="text" name="name" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Telefone 1</label>
+                            <input type="text" name="phone1" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Telefone 2</label>
+                            <input type="text" name="phone2" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Telefone 3</label>
+                            <input type="text" name="phone3" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Rua</label>
+                            <input type="text" name="street" class="form-control">
+                        </div>
+                        <div>
+                            <label class="form-label">Nº</label>
+                            <input type="number" name="number" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">CEP</label>
+                            <input type="number" name="cep" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Complemento</label>
+                            <input type="text" name="complement" class="form-control">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-success w-100">Salvar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function filterContacts() {
+            let input = document.getElementById("search").value.toLowerCase();
+            let rows = document.getElementById("contactTable").getElementsByTagName("tr");
+
+            for (let i = 0; i < rows.length; i++) {
+                let name = rows[i].getElementsByTagName("td")[0].textContent.toLowerCase();
+                rows[i].style.display = name.includes(input) ? "" : "none";
+            }
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
