@@ -4,7 +4,12 @@ public class Telefones {
     public String telefone1;
     public String telefone2;
     public String telefone3;
+    public Telefones(){
+        this.telefone1="-";
+        this.telefone2="-";
+        this.telefone3="-";
 
+    }
     // Metodos de inserir dados
     public void setTelefone1(String telefone){
         this.telefone1=telefone;

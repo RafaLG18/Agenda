@@ -35,7 +35,7 @@ public class RepositorioEndereco {
             pstm.setString(1, valor);
             ResultSet query = pstm.executeQuery();
             while (query.next()) { 
-                int resultado=query.getInt(coluna);
+                int resultado=query.getInt("id");
                 return resultado;
             }
         }
