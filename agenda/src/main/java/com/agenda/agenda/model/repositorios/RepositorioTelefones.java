@@ -28,6 +28,19 @@ public class RepositorioTelefones {
         }
         return "";
     }
+    public String pesquisarTelefoneById(int number_col,int telefone_id) throws SQLException {
+        String sql="select telefone"+number_col+" from telefones where id = ?";
+        
+        try(PreparedStatement pstm = ConnectionManager.getCurrentConnection().prepareStatement(sql)){
+            pstm.setInt(1, telefone_id);
+            ResultSet query = pstm.executeQuery();
+            while (query.next()) { 
+                String resultado=query.getString("telefone"+number_col);
+                return resultado;
+            }
+        }
+        return "";
+    }
 
     public int pesquisarId(String coluna, String valor) throws SQLException {
         String sql="select id from telefones where "+coluna+"= ?";
