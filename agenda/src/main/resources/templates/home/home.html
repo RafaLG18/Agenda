@@ -19,7 +19,7 @@
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            max-width: 900px;
+            max-width: 1200px;
         }
         h1 {
             font-size: 24px;
@@ -31,7 +31,7 @@
             border-radius: 10px;
         }
         .table-container {
-            max-height: 300px;
+            max-height: 400px;
             overflow-y: auto;
             border-radius: 10px;
         }
@@ -51,9 +51,9 @@
             transform: scale(1.05);
         }
 
-        /* Ajustando a cor da fonte no modal para preto */
-        .modal-content {
-            color: black; /* Cor preta para o texto dentro do modal */
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle;
         }
     </style>
 </head>
@@ -61,6 +61,11 @@
 
     <div class="container">
         <h1 class="mb-3"><i class="fas fa-address-book"></i> Meus Contatos</h1>
+
+        <!-- Botão para editar perfil -->
+        <button class="btn btn-secondary btn-custom mb-3" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+            <i class="fas fa-user-edit"></i> Editar Perfil
+        </button>
 
         <!-- Campo de pesquisa -->
         <div class="input-group mb-3">
@@ -82,17 +87,17 @@
                 </thead>
                 <tbody id="contactTable">
                     <tr th:each="contact : ${contacts}">
-                        <td th:text="${contact.name}"></td>
-                        <td th:text="${contact.phone1} ?: 'N/A'"></td>
-                        <td th:text="${contact.phone2} ?: 'N/A'"></td>
-                        <td th:text="${contact.phone3} ?: 'N/A'"></td>
-                        <td th:text="${contact.address}"></td>
+                        <td th:text="${contact.nome}"></td>
+                        <td th:text="${contact.telefone1} ?: 'N/A'"></td>
+                        <td th:text="${contact.telefone2} ?: 'N/A'"></td>
+                        <td th:text="${contact.telefone3} ?: 'N/A'"></td>
+                        <td th:text="${contact.endereco}"></td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <!-- Botão para abrir o modal -->
+        <!-- Botão para adicionar contato -->
         <button class="btn btn-primary btn-custom mt-3" data-bs-toggle="modal" data-bs-target="#addContactModal">
             <i class="fas fa-user-plus"></i> Adicionar Contato
         </button>
@@ -103,7 +108,7 @@
     <!-- Modal para cadastro de novo contato -->
     <div class="modal fade" id="addContactModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content" style="color: black;"> <!-- Fonte preta para o modal -->
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalTitle">Novo Contato</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -130,20 +135,48 @@
                             <label class="form-label">Rua</label>
                             <input type="text" name="street" class="form-control">
                         </div>
-                        <div>
-                            <label class="form-label">Nº</label>
-                            <input type="number" name="number" class="form-control">
-                        </div>
                         <div class="mb-3">
                             <label class="form-label">CEP</label>
-                            <input type="number" name="cep" class="form-control">
+                            <input type="text" name="cep" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Número</label>
+                            <input type="text" name="number" class="form-control">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Complemento</label>
                             <input type="text" name="complement" class="form-control">
                         </div>
-                        
                         <button type="submit" class="btn btn-success w-100">Salvar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal para edição de perfil -->
+    <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileTitle" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="color: black;"> <!-- Fonte preta para o modal -->
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProfileTitle">Editar Perfil</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="profileForm" th:action="@{/update-profile}" method="post">
+                        <div class="mb-3">
+                            <label class="form-label">Nome</label>
+                            <input type="text" name="name" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">E-mail</label>
+                            <input type="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Senha</label>
+                            <input type="password" name="password" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Salvar Alterações</button>
                     </form>
                 </div>
             </div>
