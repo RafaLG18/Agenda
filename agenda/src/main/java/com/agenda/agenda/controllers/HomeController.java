@@ -14,6 +14,7 @@ import com.agenda.agenda.model.entidades.Contato;
 import com.agenda.agenda.model.entidades.ContatoAgenda;
 import com.agenda.agenda.model.entidades.Endereco;
 import com.agenda.agenda.model.entidades.Telefones;
+import com.agenda.agenda.model.entidades.Usuario;
 import com.agenda.agenda.model.repositorios.RepositorioContato;
 import com.agenda.agenda.model.repositorios.RepositorioEndereco;
 import com.agenda.agenda.model.repositorios.RepositorioTelefones;
@@ -48,6 +49,29 @@ public class HomeController {
         m.addAttribute("logado", "false");
         session.setAttribute("logado", "false");
         return "redirect:/";
+    }
+
+    @PostMapping("/update-profile")
+    public String update() throws SQLException {
+        if (this.verificaLogin() == 0) {
+            return "redirect:/login";
+        } else {
+            session = request.getSession();
+            String user_email = (String) session.getAttribute("user_email");
+            
+            String nome=request.getParameter("name");
+            String email=request.getParameter("email");
+            String password=request.getParameter("password");
+
+            RepositorioUsuario usuario=new RepositorioUsuario();
+            int usuario_id = usuario.pesquisarId("email", user_email);
+
+            usuario.alterar(usuario_id, "nome", nome);
+            usuario.alterar(usuario_id, "email", email);
+            usuario.alterar(usuario_id, "senha", password);
+        
+        }
+        return "redirect:/home";
     }
 
     @PostMapping("/add-contact")
